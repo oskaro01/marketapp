@@ -34,6 +34,7 @@ export function HomeCarousel({
       className='w-full mx-auto '
       onMouseEnter={plugin.current.stop}
       onMouseLeave={plugin.current.reset}
+      
     >
       <CarouselContent>
         {items.map((item) => (
