@@ -58,3 +58,6 @@ npm list @radix-ui/react-toast class-variance-authority lucide-react << this (2)
 If they are installed → you’ll see their version numbers.
 
 If not installed → you’ll see (empty) or -- (not installed).
+
+======
+first install toast dependencies, then check , then add components (toast and toaster)
