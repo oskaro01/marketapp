@@ -16,6 +16,9 @@ export const SignOut = async () => {
   const redirectTo = await signOut({ redirect: false })
   redirect(redirectTo.redirect)
 }
+export const SignInWithGoogle = async () => { // async func that return signIn from @auth ,google by parameter
+  await signIn('google')
+}
 
 // CREATE
 export async function registerUser(userSignUp: IUserSignUp) {
