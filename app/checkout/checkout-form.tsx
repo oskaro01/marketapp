@@ -582,7 +582,7 @@ const CheckoutForm = () => {
                       <div>
                         <div className=' font-bold'>
                           <p className='mb-2'> Choose a shipping speed:</p>
-
+                          
                           <ul>
                             <RadioGroup
                               value={
@@ -604,7 +604,7 @@ const CheckoutForm = () => {
                                     id={`address-${dd.name}`}
                                   />
                                   <Label
-                                    className='pl-2 space-y-2 cursor-pointer'
+                                    className='pl-2 cursor-pointer'
                                     htmlFor={`address-${dd.name}`}
                                   >
                                     <div className='text-green-700 font-semibold'>
