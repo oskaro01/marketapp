@@ -579,61 +579,56 @@ const CheckoutForm = () => {
                           </div>
                         ))}
                       </div>
-                      <div>
-                        <div className=' font-bold'>
-                          <p className='mb-2'> Choose a shipping speed:</p>
-                          
-                          <ul>
-                            <RadioGroup
-                              value={
-                                AVAILABLE_DELIVERY_DATES[deliveryDateIndex!]
-                                  .name
-                              }
-                              onValueChange={(value) =>
-                                setDeliveryDateIndex(
-                                  AVAILABLE_DELIVERY_DATES.findIndex(
-                                    (address) => address.name === value
-                                  )!
-                                )
-                              }
-                            >
-                              {AVAILABLE_DELIVERY_DATES.map((dd) => (
-                                <div key={dd.name} className='flex'>
-                                  <RadioGroupItem
-                                    value={dd.name}
-                                    id={`address-${dd.name}`}
-                                  />
-                                  <Label
-                                    className='pl-2 cursor-pointer'
-                                    htmlFor={`address-${dd.name}`}
-                                  >
-                                    <div className='text-green-700 font-semibold'>
-                                      {
-                                        formatDateTime(
-                                          calculateFutureDate(dd.daysToDeliver)
-                                        ).dateOnly
-                                      }
-                                    </div>
-                                    <div>
-                                      {(dd.freeShippingMinPrice > 0 &&
-                                      itemsPrice >= dd.freeShippingMinPrice
-                                        ? 0
-                                        : dd.shippingPrice) === 0 ? (
-                                        'FREE Shipping'
-                                      ) : (
-                                        <ProductPrice
-                                          price={dd.shippingPrice}
-                                          plain
-                                        />
-                                      )}
-                                    </div>
-                                  </Label>
-                                </div>
-                              ))}
-                            </RadioGroup>
-                          </ul>
-                        </div>
-                      </div>
+
+                    <div>
+  <div className="font-bold">
+    <p className="mb-1">Choose a shipping speed:</p>
+
+    <ul>
+      <RadioGroup
+        className="flex flex-col gap-y-[2px]"
+        value={AVAILABLE_DELIVERY_DATES[deliveryDateIndex!].name}
+        onValueChange={(value) =>
+          setDeliveryDateIndex(
+            AVAILABLE_DELIVERY_DATES.findIndex(
+              (address) => address.name === value
+            )!
+          )
+        }
+      >
+        {AVAILABLE_DELIVERY_DATES.map((dd) => (
+          <div key={dd.name} className="flex items-start">
+            <RadioGroupItem
+              value={dd.name}
+              id={`address-${dd.name}`}
+              className="mt-[2px]"
+            />
+            <Label
+              htmlFor={`address-${dd.name}`}
+              className="pl-2 cursor-pointer block leading-[1.3] space-y-[1px]"
+            >
+              <div className="text-green-700 font-semibold">
+                {formatDateTime(calculateFutureDate(dd.daysToDeliver)).dateOnly}
+              </div>
+              <div className="text-black">
+                {(dd.freeShippingMinPrice > 0 &&
+                itemsPrice >= dd.freeShippingMinPrice
+                  ? 0
+                  : dd.shippingPrice) === 0 ? (
+                  'FREE Shipping'
+                ) : (
+                  <ProductPrice price={dd.shippingPrice} plain />
+                )}
+              </div>
+            </Label>
+          </div>
+        ))}
+      </RadioGroup>
+    </ul>
+  </div>
+</div>
+
+
                     </div>
                   </CardContent>
                 </Card>
