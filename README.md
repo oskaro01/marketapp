@@ -122,3 +122,8 @@ If they are installed → you’ll see their version numbers.
 If not installed → you’ll see (empty) or -- (not installed).
 
 
+======
+
+![alt text](image.png)
+
+
