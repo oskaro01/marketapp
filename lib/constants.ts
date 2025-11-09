@@ -32,6 +32,11 @@ export const AVAILABLE_PAYMENT_METHODS = [
     commission: 0,
     isDefault: false,
   },
+    {
+    name: 'BKash',
+    commission: 0,
+    isDefault: false,
+  },
   {
     name: 'Cash On Delivery',
     commission: 0,
