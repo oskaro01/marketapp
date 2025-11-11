@@ -14,8 +14,10 @@ export default function ClientProviders({
   return (
     <>
       {isCartSidebarOpen ? (
-        <div className='flex min-h-screen'>
-          <div className='flex-1 overflow-hidden'>{children}</div>
+        <div className="flex min-h-screen">
+          <div className="flex-1">
+            {children}
+          </div>
           <CartSidebar />
         </div>
       ) : (
