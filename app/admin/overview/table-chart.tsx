@@ -16,21 +16,20 @@ type TableChartProps = {
 }
 
 interface ProgressBarProps {
-  value: number // Accepts a number between 0 and 100
+  value: number
   className?: string
 }
 
 const ProgressBar: React.FC<ProgressBarProps> = ({ value }) => {
-  // Ensure value stays within 0-100 range
   const boundedValue = Math.min(100, Math.max(0, value))
 
   return (
-    <div className='relative w-full h-4 overflow-hidden'>
+    <div className='w-full h-2 bg-muted rounded-full overflow-hidden relative'>
+      {/* Yellow bar starting from RIGHT */}
       <div
-        className='bg-primary h-full transition-all duration-300 rounded-lg'
+        className='bg-yellow-500 h-full rounded-full absolute right-0'
         style={{
           width: `${boundedValue}%`,
-          float: 'right', // Aligns the bar to start from the right
         }}
       />
     </div>
@@ -47,34 +46,53 @@ export default function TableChart({
     label: labelType === 'month' ? getMonthName(x.label) : x.label,
     percentage: Math.round((x.value / max) * 100),
   }))
+  
   return (
-    <div className='space-y-3'>
+    <div className='space-y-4'>
       {dataWithPercentage.map(({ label, id, value, image, percentage }) => (
         <div
           key={label}
-          className='grid grid-cols-[100px_1fr_80px] md:grid-cols-[250px_1fr_80px] gap-2 space-y-4  '
+          className='flex items-center gap-4'
         >
-          {image ? (
-            <Link className='flex items-end' href={`/admin/products/${id}`}>
-              <Image
-                className='rounded border  aspect-square object-scale-down max-w-full h-auto mx-auto mr-1'
-                src={image!}
-                alt={label}
-                width={36}
-                height={36}
-              />
-              <p className='text-center text-sm whitespace-nowrap overflow-hidden text-ellipsis'>
-                {label}
-              </p>
-            </Link>
-          ) : (
-            <div className='flex items-end text-sm'>{label}</div>
-          )}
+          {/* Label with fixed width container */}
+          <div className='flex items-center gap-2 flex-1 min-w-0'>
+            {image ? (
+              <Link 
+                className='flex items-center gap-2 min-w-0' 
+                href={`/admin/products/${id}`}
+              >
+                <Image
+                  className='rounded border aspect-square object-cover w-8 h-8 flex-shrink-0'
+                  src={image}
+                  alt={label}
+                  width={32}
+                  height={32}
+                />
+                <span className='text-sm whitespace-nowrap overflow-hidden text-ellipsis'>
+                  {label}
+                </span>
+              </Link>
+            ) : (
+              <div className='flex items-center gap-2 min-w-0'>
+                <div className='w-3 h-3 rounded-full flex-shrink-0 bg-primary' />
+                <span className='text-sm whitespace-nowrap overflow-hidden text-ellipsis'>
+                  {label}
+                </span>
+              </div>
+            )}
+          </div>
 
-          <ProgressBar value={percentage} />
-
-          <div className='text-sm text-right flex items-center'>
-            <ProductPrice price={value} plain />
+          {/* Progress Bar & Amount - Combined container */}
+          <div className='flex items-center gap-3 flex-1 min-w-0'>
+            {/* Progress Bar that starts from right */}
+            <div className='flex-1 min-w-0'>
+              <ProgressBar value={percentage} />
+            </div>
+            
+            {/* Amount - Fixed width to prevent shifting */}
+            <div className='text-sm text-right font-medium whitespace-nowrap w-24'>
+              <ProductPrice price={value} plain />
+            </div>
           </div>
         </div>
       ))}

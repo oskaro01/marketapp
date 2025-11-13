@@ -165,29 +165,35 @@ export default function OverviewReport() {
           </Card>
         </div>
 
-        <div className='grid gap-4 md:grid-cols-2'>
-          <Card>
-            <CardHeader>
-              <CardTitle>How much you’re earning</CardTitle>
-              <CardDescription>Estimated · Last 6 months</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <TableChart data={data.monthlySales} labelType='month' />
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader>
-              <CardTitle>Product Performance</CardTitle>
-              <CardDescription>
-                {formatDateTime(date!.from!).dateOnly} to{' '}
-                {formatDateTime(date!.to!).dateOnly}
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <TableChart data={data.topSalesProducts} labelType='product' />
-            </CardContent>
-          </Card>
-        </div>
+<div className='grid gap-4 md:grid-cols-2'>
+  <Card>
+    <CardHeader>
+      <CardTitle>How much re earning</CardTitle>
+      <CardDescription>Estimated · Last 6 months</CardDescription>
+    </CardHeader>
+    <CardContent className="p-4">
+      <div className="w-full overflow-x-auto">
+        <TableChart data={data.monthlySales} labelType='month' />
+      </div>
+    </CardContent>
+  </Card>
+  <Card>
+    <CardHeader>
+      <CardTitle>Product Performance</CardTitle>
+      <CardDescription>
+        {formatDateTime(date!.from!).dateOnly} to{' '}
+        {formatDateTime(date!.to!).dateOnly}
+      </CardDescription>
+    </CardHeader>
+    <CardContent className="p-4">
+      <div className="w-full overflow-x-auto">
+        <TableChart data={data.topSalesProducts} labelType='product' />
+      </div>
+    </CardContent>
+  </Card>
+</div>
+
+
 
         <div className='grid gap-4 md:grid-cols-2'>
           <Card>
